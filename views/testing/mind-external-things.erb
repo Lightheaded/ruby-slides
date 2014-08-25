@@ -1,0 +1,39 @@
+<section id="mind-external-things" class="slide">
+  <div class="vcenter">
+    <h1>Splitting &infin; to pieces</h1>
+  </div>
+</section>
+
+<section class="slide" id="mind-external-things-approaches">
+  <h2>How can we prepare the environment?</h2>
+  <ul>
+    <li class="slide" id="mind-external-things-approaches-http">
+      <h3>Stub HTTP</h3>
+      <p>
+        Good: tests can run offline and not rely on external systems.<br />
+        Bad: API of external systems may change.
+      </p>
+    </li>
+    <li class="slide" id="mind-external-things-approaches-shell">
+      <h3>Stub selling-out</h3>
+      <p>
+        Good: do not rely on 'ffmpeg', 'catdoc', 'cp /log/1-gig.log /log/1-gig.1.log'.<br />
+        Bad: is the product ready for Linux distro upgrade?
+      </p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="mind-external-things-approaches">
+  <h2>How can we prepare the environment? (continued)</h2>
+  <ul>
+    <li class="slide" id="mind-external-things-approaches-time">
+      <h3>Stub time</h3>
+      <p>I can't find any bad effects, but if there are many things, rely on 'Time.now'...</p>
+    </li>
+    <li class="slide" id="mind-external-things-approaches-io">
+      <h3>Stub file IO</h3>
+      <p>Using '/dev/null' or in-memory data structures as input can speed up the tests</p>
+    </li>
+  </ul>
+</section>
