@@ -97,6 +97,10 @@ class App < Sinatra::Base
     erb :bdd
   end
 
+  get "/testing" do
+    erb :testing
+  end
+
   #get "/cssbestpractices" do
   #  erb :cssbestpractices
   #end
