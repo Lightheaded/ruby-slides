@@ -1,0 +1,54 @@
+<section id="tdd" class="slide">
+  <div class="vcenter">
+    <h1>TDD</h1>
+  </div>
+</section>
+
+<section class="slide" id="tdd-in-short">
+  <h2>Test-driven Development</h2>
+  <p>Warning! The slide is opinionated, because of nature of this methodology.</p>
+  <ul>
+    <li class="slide" id="tdd-in-short-1">A methodology, not a type of tests</li>
+    <li class="slide" id="tdd-in-short-2">... related to the test-first programming concepts of extreme programming, begun in 1999</li>
+    <li class="slide" id="tdd-in-short-3">There is a thing, called Acceptance Test-Driven Development (ATDD)</li>
+    <li class="slide" id="tdd-in-short-4">A buzz word</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-test">
+  <h2>1. Writing test</h2>
+  <p>This is most hard: test-first. Try not to think, on code implementation.</p>
+  <ul>
+    <li class="slide" id="tdd-test-1">Answer the question: how can I test it?</li>
+    <li class="slide" id="tdd-test-2">Write a description of test (on your native language, if necessary)</li>
+    <li class="slide" id="tdd-test-3">Describe in code, how would you test the result. What should change? (Testing, step #3)</li>
+    <li class="slide" id="tdd-test-4">Write how you would commit an action on the tested object (Testing, step #2)</li>
+    <li class="slide" id="tdd-test-5">Add code for setting up the environment (Testing, step #1)</li>
+    <li class="slide" id="tdd-test-6">Launch test, ensure, that it fails because the method is not implemented or not behaves properly</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-implement">
+  <h2>2. Implementing</h2>
+  <p>Do this quick, but not in a sloppy way.</p>
+  <ul>
+    <li class="slide" id="tdd-implement-1">Implement the functionality in the application code</li>
+    <li class="slide" id="tdd-implement-2">Ensure, that test passes</li>
+    <li class="slide" id="tdd-implement-3">Commit to DVCS ;)</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-refactoring">
+  <h2>3. Refactoring</h2>
+  <p>You must implement a bigger unit, than just one method - one test.</p>
+  <ul>
+    <li class="slide" id="tdd-refactoring-1">Observe tests, you have</li>
+    <li class="slide" id="tdd-refactoring-2">Refactor them</li>
+    <li class="slide" id="tdd-refactoring-3">Observe and refactor application code</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-circle">
+  <h2>TDD Circle</h2>
+  <img class="tdd-cycle" src="/assets/testing/tdd-cycles.png" />
+</section>

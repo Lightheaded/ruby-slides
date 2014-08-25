@@ -7,3 +7,17 @@
 .green {
   color: green;
 }
+
+#additional-tools-chaos-monkey {
+  img.chaos-monkey {
+    width: 30%;
+    float: left;
+    margin: 0;
+  }
+  .chaos-monkey-list {
+    width: 45%;
+    float: left;
+    padding-left: 5%;
+  }
+}
+
