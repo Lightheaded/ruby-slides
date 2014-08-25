@@ -1,0 +1,137 @@
+<section id="types-integration" class="slide">
+  <h2>Integration Tests</h2>
+  <p>Test of combination of classes and modules. The purpose is to be sure, that the messages, which were stubbed in Unit Tests are actually sent and handled properly.</p>
+</section>
+
+<section class="slide" id="types-integration-what-to-test">
+  <h2>What do I need to combine?</h2>
+  <ul>
+    <li class="slide" id="types-integration-what-to-test-high-level-api">
+      High-level API of classes and modules
+    </li>
+    <li class="slide" id="types-integration-what-to-test-components">
+      Components of the entire system
+    </li>
+    <li class="slide" id="types-integration-what-to-test-sub-systems">
+      Sub-systems
+    </li>
+  </ul>
+
+  <h3 class="slide" id="types-integration-what-to-test-fractal">This is like fractal - you can test any order of components till you reach the top of the entire system.</h3>
+</section>
+
+<section class="slide" id="types-integration-howto">
+  <h2>How to test?</h2>
+  <p>The step for "Environment Setup" is done...<br />
+  but, it can be: adding 100500 records or starting 10 servers.</p>
+  <ol>
+    <li class="slide" id="types-integration-howto-1">Send a message to an API endpoint</li>
+    <li class="slide" id="types-integration-howto-2">Try different payloads if necessary</li>
+    <li class="slide" id="types-integration-howto-3">Check the returned result</li>
+    <li class="slide" id="types-integration-howto-4">Check the expected side-effects</li>
+    <li class="slide" id="types-integration-howto-5">Ensure, the errors are handled properly</li>
+  </ol>
+</section>
+
+<section class="slide" id="types-integration-example">
+  <h2>Example</h2>
+  <script type="syntaxhighlighter" class="brush: ruby">
+    module API
+      module V1
+        class NotificationsController < Grape::API
+          helpers API::Authentication
+          resource :notifications do
+            params do
+              group :notification, type: Hash do
+                requires(:recipient, type: String)
+                requires(:message,   type: String)
+              end
+            end
+
+            post do
+              Notifier.new(params[:notification][:recipient],
+                           params[:notification][:message]).
+                       notify!
+
+              {code: 200, status: 'OK', message: 'Notification sent'}
+            end
+          end
+        end
+      end
+    end
+  </script>
+</section>
+
+<section class="slide" id="types-integration-example-what-to-test">
+  <h2>What shall we test?</h2>
+  <script type="syntaxhighlighter" class="brush: ruby">
+    class Notifications #
+      helpers API::Auth # <- Does authenication works
+      resource :notific #
+        params do
+          group :notifi # <- What if parameters are empty?
+            requires(:r # <- ... or wrong?
+            requires(:m #
+          end
+        end
+
+        post do         # <- This is our API endpoint
+          Notifier.new( # <- Have anything happened?
+                        #
+                   noti # <- What if error raised?
+
+          {code: 200, s # <- What did the API returned?
+        end
+      end
+    end
+  </script>
+</section>
+
+<section class="slide" id="types-integration-queries-and-commands">
+  <h2>What about external API calls?</h2>
+  <ul>
+    <li class="slide" id="types-integration-qnc-stub">Can be just stubbed</li>
+    <li class="slide" id="types-integration-qnc-record">Can be real, but just for the first time</li>
+    <li class="slide" id="types-integration-qnc-run">Can always be real, but requires a kind of external manager, to start everything</li>
+  </ul>
+</section>
+
+<section class="slide" id="types-integration-cut-corners">
+  <h2>Cutting corners...</h2>
+  <ul>
+    <li class="slide" id="types-integration-cut-corners-reasonable">
+      <h3>Be reasonable</h3>
+      <p>Implement business-valuable scenarios</p>
+    </li>
+    <li class="slide" id="types-integration-cut-corners-minimum-set">
+      <h3>Start with minimum set of tests</h3>
+      <ul>
+        <li class="slide" id="types-integration-cut-corners-minimum-set-1">
+          Test necessary "good scenarios"
+        </li>
+        <li class="slide" id="types-integration-cut-corners-minimum-set-2">
+          Test likely to happen "bad scenarios"
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-integration-cut-corners-2">
+  <h2>Cutting corners... (continued)</h2>
+  <ul>
+    <li class="slide" id="types-integrations-cut-corners-visible-interactions">
+      <h3>Test only visible interactions</h3>
+      <p>Think of main actors of your scenario - HTTP requests, Database, UI</p>
+    </li>
+    <li class="slide" id="types-unit-cut-corners-design">
+      <h3>Mind your API Design</h3>
+      <p>A RESTfull API endpoint, that is in charge for one resource is simpler, than an HTTP RPC endpoint</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-integration-problem">
+  <h2>The problem</h2>
+  <h3>Having an engine, gear box and weal in a pile, not means having a car...</h3>
+</section>

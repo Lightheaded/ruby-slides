@@ -1,0 +1,148 @@
+<section id="types-unit" class="slide">
+  <h2>Unit Tests</h2>
+  <p>Test for the most tiny "units" of code. Those units are the smallest testable parts.</p>
+</section>
+
+<section class="slide" id="types-unit-what-to-test">
+  <h2>How to find those units of code?</h2>
+  <ul>
+    <li class="slide" id="types-unit-what-to-test-methods">Class methods (in OOP)</li>
+    <li class="slide" id="types-unit-what-to-test-functions">Functions (in FProg)</li>
+    <li class="slide" id="types-unit-what-to-test-procedures">SQL procedures</li>
+  </ul>
+</section>
+
+<section class="slide" id="types-unit-howto">
+  <h2>How to test?</h2>
+  <p>The step for "Environment Setup" is done</p>
+  <ol>
+    <li class="slide" id="types-unit-howto-1">Pass an arguments list (if necessary)</li>
+    <li class="slide" id="types-unit-howto-2">Test for optional arguments</li>
+    <li class="slide" id="types-unit-howto-3">Try different combinations of arguments</li>
+    <li class="slide" id="types-unit-howto-4">Check the returned result</li>
+    <li class="slide" id="types-unit-howto-5">Check the commands sent</li>
+    <li class="slide" id="types-unit-howto-6">Stub queries to external classes</li>
+  </ol>
+</section>
+
+<section class="slide" id="types-unit-example">
+  <h2>Example</h2>
+  <script type="syntaxhighlighter" class="brush: ruby">
+    class Notifier
+      attr_reader :recipient, :message, :backend
+
+      def notify!
+        id = SecureRandom.uuid
+        backend.post(id, recipient, message)
+      end
+
+      def initialize(recipient, message, backend=EmailBackend)
+        @recipient = recipient
+        @message   = message
+        @backend   = backend
+      end
+    end
+  </script>
+</section>
+
+<section class="slide" id="types-unit-example-what-to-test">
+  <h2>What shall we test?</h2>
+  <script type="syntaxhighlighter" class="brush: ruby">
+    class Notifier
+      attr_reader :rec #... <- what are values if we initialize
+
+      def notify!
+        id = SecureRan #... <- stub this query
+        backend.post(i #... <- what is called if we call #notify!
+      end
+
+      def initialize(r #... <- what happens if we do not set 'backend'
+        @recipient = r #...
+        @message   = m #...
+        @backend   = b #...
+      end
+    end
+  </script>
+</section>
+
+<section class="slide" id="types-unit-the-query">
+  <h2>What is the "query"?</h2>
+  <p>This is a message to an object, that not affects it's internal state.</p>
+  <p>In short: <strong>no side-effects</strong>.</p>
+
+  <div class="slide" id="types-unit-query-examples">
+    <h2>Examples:</h2>
+    <ul>
+      <li>SELECT from database</li>
+      <li>HTTP GET of white-listed IPs</li>
+      <li>Disk read of log file</li>
+    </ul>
+    <script type="syntaxhighlighter" class="brush: ruby">
+      #...
+      id = SecureRandom.uuid
+      #...
+    </script>
+  </div>
+</section>
+
+<section class="slide" id="types-unit-the-command">
+  <h2>What is the "command"?</h2>
+  <p>This is a message to an object, that affects it's internal state.</p>
+  <p>In short: <strong>having side-effects</strong>.</p>
+
+  <div class="slide" id="types-unit-command-examples">
+    <h2>Examples:</h2>
+    <ul>
+      <li>INSERT to database</li>
+      <li>HTTP POST for web-hook</li>
+      <li>Write to log-file</li>
+      <li>Just +1 of attribute of a singleton class</li>
+    </ul>
+    <script type="syntaxhighlighter" class="brush: ruby">
+      #...
+      backend.post(id, recipient, message)
+      #...
+    </script>
+  </div>
+</section>
+
+<section class="slide" id="types-unit-cut-corners">
+  <h2>Cutting corners...</h2>
+  <ul>
+    <li class="slide" id="types-unit-cut-corners-reasonable">
+      <h3>Be reasonable</h3>
+      <p>Trying to test all the cases is good, but if you write 100500 tests for a single method...</p>
+    </li>
+    <li class="slide" id="types-unit-cut-corners-minimum-set">
+      <h3>Start with minimum set of tests</h3>
+      <p>One test at a time. Each test describes a single 'requirement'</p>
+      <ul>
+        <li class="slide" id="types-unit-cut-corners-minimum-set-1">
+          Test necessary "good scenarios"
+        </li>
+        <li class="slide" id="types-unit-cut-corners-minimum-set-2">
+          Test likely to happen "bad scenarios"
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-unit-cut-corners-2">
+  <h2>Cutting corners... (continued)</h2>
+  <ul>
+    <li class="slide" id="types-unit-cut-corners-public-api">
+      <h3>Test only public class API methods</h3>
+      <p>Tests will become an obstacle if you start adding cases for every single private API method.</p>
+    </li>
+    <li class="slide" id="types-unit-cut-corners-design">
+      <h3>Mind your Object Design</h3>
+      <p>Small things are easy to test. Imagine: 3 public API methods vs. 333</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-unit-problem">
+  <h2>The problem</h2>
+  <h3>Having a pile of clock parts not means having a working clock...</h3>
+</section>
