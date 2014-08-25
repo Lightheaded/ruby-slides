@@ -1,4 +1,10 @@
 <section id="types-integration" class="slide">
+  <div class="vcenter">
+    <h1>Integration Tests</h1>
+  </div>
+</section>
+
+<section id="types-integration-definition" class="slide">
   <h2>Integration Tests</h2>
   <p>Test of combination of classes and modules. The purpose is to be sure, that the messages, which were stubbed in Unit Tests are actually sent and handled properly.</p>
 </section>
@@ -36,26 +42,22 @@
 <section class="slide" id="types-integration-example">
   <h2>Example</h2>
   <script type="syntaxhighlighter" class="brush: ruby">
-    module API
-      module V1
-        class NotificationsController < Grape::API
-          helpers API::Authentication
-          resource :notifications do
-            params do
-              group :notification, type: Hash do
-                requires(:recipient, type: String)
-                requires(:message,   type: String)
-              end
-            end
-
-            post do
-              Notifier.new(params[:notification][:recipient],
-                           params[:notification][:message]).
-                       notify!
-
-              {code: 200, status: 'OK', message: 'Notification sent'}
-            end
+    class NotificationsController < Grape::API
+      helpers API::Authentication
+      resource :notifications do
+        params do
+          group :notification, type: Hash do
+            requires(:recipient, type: String)
+            requires(:message,   type: String)
           end
+        end
+
+        post do
+          Notifier.new(params[:notification][:recipient],
+                       params[:notification][:message]).
+                   notify!
+
+          {code: 200, status: 'OK', message: 'Notification sent'}
         end
       end
     end
@@ -118,7 +120,7 @@
 </section>
 
 <section class="slide" id="types-integration-cut-corners-2">
-  <h2>Cutting corners... (continued)</h2>
+  <h2>Cutting corners...</h2>
   <ul>
     <li class="slide" id="types-integrations-cut-corners-visible-interactions">
       <h3>Test only visible interactions</h3>

@@ -1,4 +1,10 @@
 <section id="types-unit" class="slide">
+  <div class="vcenter">
+    <h1>Unit Tests</h1>
+  </div>
+</section>
+
+<section id="types-unit-definition" class="slide">
   <h2>Unit Tests</h2>
   <p>Test for the most tiny "units" of code. Those units are the smallest testable parts.</p>
 </section>
@@ -71,7 +77,7 @@
   <p>In short: <strong>no side-effects</strong>.</p>
 
   <div class="slide" id="types-unit-query-examples">
-    <h2>Examples:</h2>
+    <h3>Examples:</h3>
     <ul>
       <li>SELECT from database</li>
       <li>HTTP GET of white-listed IPs</li>
@@ -91,7 +97,7 @@
   <p>In short: <strong>having side-effects</strong>.</p>
 
   <div class="slide" id="types-unit-command-examples">
-    <h2>Examples:</h2>
+    <h3>Examples:</h3>
     <ul>
       <li>INSERT to database</li>
       <li>HTTP POST for web-hook</li>
@@ -129,7 +135,7 @@
 </section>
 
 <section class="slide" id="types-unit-cut-corners-2">
-  <h2>Cutting corners... (continued)</h2>
+  <h2>Cutting corners...</h2>
   <ul>
     <li class="slide" id="types-unit-cut-corners-public-api">
       <h3>Test only public class API methods</h3>
