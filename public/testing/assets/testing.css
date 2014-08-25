@@ -1349,3 +1349,22 @@ a:hover, a:focus {
   float: left;
   width: 32%;
 }
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+#additional-tools-chaos-monkey img.chaos-monkey {
+  width: 30%;
+  float: left;
+  margin: 0;
+}
+#additional-tools-chaos-monkey .chaos-monkey-list {
+  width: 45%;
+  float: left;
+  padding-left: 5%;
+}

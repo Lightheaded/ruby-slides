@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <meta charset="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-      <title>BDD. Behavior-driven development.</title>
-      <link href="assets/bdd.css" rel="stylesheet" />
-      <script src="assets/bdd.js"></script>
-   </head>
-   <body class="deck-container">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>BDD. Behavior-driven development.</title>
+  <link href="assets/bdd.css" rel="stylesheet" />
+  <script src="assets/bdd.js"></script>
+</head>
+
+<body class="deck-container">
 
 <!-- Begin slides. Just make elements with a class of slide. -->
-<section id="intro" class="slide"><div class="vcenter">
+<section id="intro" class="slide">
+  <div class="vcenter">
     <h1>Behavior-driven development</h1>
     <div class="about">
       <p>
         <strong>BDD</strong> is about implementing an application by describing its behaviour from the perspective of its stakeholders.
       </p>
-      <ul><li>User stories</li>
+      <ul>
+        <li>User stories</li>
         <li>Domain-Driven Development</li>
         <li>
           Extreme Programming
-          <ul><li>Test-Driven Development</li>
+          <ul>
+            <li>Test-Driven Development</li>
             <li>Acceptance Driven Test Planning</li>
             <li>Continuous Integration</li>
-          </ul></li>
-      </ul></div>    
+          </ul>
+        </li>
+      </ul>
+    </div>    
   </div>
-</section><section id="bdd-cycle" class="slide"><h2>Bdd cycle</h2>
-  <img class="bdd-cycle" src="/public/bdd/assets/bdd-cycle-around-tdd-cycles.png" /><div class="bdd-cycle-list">
-    <ol><li>Start with an Acceptance Test scenatio.</li>
+</section><section id="bdd-cycle" class="slide">
+  <h2>Bdd cycle</h2>
+  <img class="bdd-cycle" src="/public/bdd/assets/bdd-cycle-around-tdd-cycles.png" />
+  <div class="bdd-cycle-list">
+    <ol>
+      <li>Start with an Acceptance Test scenatio.</li>
       <li>Run the Acceptance Test scenatio.</li>
       <li>
         Red/Green/Refactor wuth Unit Tests.
-        <ul><li>View</li>
+        <ul>
+          <li>View</li>
           <li>Controller</li>
           <li>Model</li>
-        </ul></li>
+        </ul>
+      </li>
       <li>Run the Acceptance Test scenatio again.</li>
-    </ol></div>
-</section><section id="init-env" class="slide"><h2>Init enviropment</h2>
+    </ol>
+  </div>
+</section><section id="init-env" class="slide">
+  <h2>Init enviropment</h2>
   <h3>Create gemset</h3>
   <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     rvm use 2.0.0-p247@bookstore --create
     Using /Users/sparrow/.rvm/gems/ruby-2.0.0-p247 with gemset bookstore
-  ]]></script><h3>Install Rails</h3>
+  ]]></script>
+  <h3>Install Rails</h3>
   <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     gem install --no-rdoc --no-ri rails
-  ]]></script><h3>Create Application</h3>
+  ]]></script>
+  <h3>Create Application</h3>
   <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     rails new bookstore --skip-bundle -T
-  ]]></script><h3>Add gems</h3>
+  ]]></script>
+  <h3>Add gems</h3>
   Gemfile
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     ...
@@ -65,9 +80,12 @@
       gem 'faker'
     end
     ...
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     bundle install
-  ]]></script></section><section id="init-testing-tools" class="slide"><h2>Init testing tools</h2>
+  ]]></script>
+</section><section id="init-testing-tools" class="slide">
+  <h2>Init testing tools</h2>
   <h3>Init RSpec</h3>
   <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     rails g rspec:install
@@ -104,8 +122,11 @@
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     require 'spec_helper'
     require 'capybara/rspec'
-  ]]></script></section><section id="meet-the-capybara" class="slide"><h2>Meet the Capybara</h2>
-  <img class="capybara" src="/public/bdd/assets/capybara.jpg" width="500" /><div class="capybara-description">
+  ]]></script>
+</section><section id="meet-the-capybara" class="slide">
+  <h2>Meet the Capybara</h2>
+  <img class="capybara" src="/public/bdd/assets/capybara.jpg" width="500" />
+  <div class="capybara-description">
     <p>
       <strong>Capybara</strong> is acceptance test framework for web applications.
     </p>
@@ -116,7 +137,8 @@
       Test your app with <a href="http://jnicklas.github.io/capybara/" target="_blank">Capybara</a>
     </p>
   </div>
-</section><section id="registration-feature" class="slide"><h2>Registration feature</h2>
+</section><section id="registration-feature" class="slide">
+  <h2>Registration feature</h2>
   specs/features/registration_spec.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     require 'features/features_spec_helper'
@@ -134,46 +156,60 @@
         expect(page).to have_content 'You registered'
       end
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/features/registration_spec.rb 
       NameError:
        undefined local variable or method 'register_path' for #<RSpec::Core::ExampleGroup::Nested_1:0x007fa4b2fb9538>
-  ]]></script></section><section id="fix-register-path-error" class="slide"><h2>Fix 'register_path' error</h2>
+  ]]></script>
+</section><section id="fix-register-path-error" class="slide">
+  <h2>Fix 'register_path' error</h2>
   config/routes.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     Bookstore::Application.routes.draw do
       get 'register', to: 'users#new', as: 'register'
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/features/registration_spec.rb 
       ActionController::RoutingError:
         uninitialized constant UsersController
-  ]]></script></section><section id="fix-uninitialized-constant-users-controller-error" class="slide"><h2>Fix uninitialized constant UsersController</h2>
+  ]]></script>
+</section><section id="fix-uninitialized-constant-users-controller-error" class="slide">
+  <h2>Fix uninitialized constant UsersController</h2>
   app/controllers/users_controller.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class UsersController < ApplicationController
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/features/registration_spec.rb 
       AbstractController::ActionNotFound:
        The action 'new' could not be found for UsersController
-  ]]></script></section><section id="fix-the-action-new-could-not-be-found" class="slide"><h2>Fix the action 'new' could not be found for UsersController</h2>
+  ]]></script>
+</section><section id="fix-the-action-new-could-not-be-found" class="slide">
+  <h2>Fix the action 'new' could not be found for UsersController</h2>
   app/controllers/users_controller.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class UsersController < ApplicationController
       def new
       end
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/features/registration_spec.rb 
       Missing template users/new, application/new
-  ]]></script></section><section id="fix-missing-template-users-new" class="slide"><h2>Fix missing template 'users/new'</h2>
+  ]]></script>
+</section><section id="fix-missing-template-users-new" class="slide">
+  <h2>Fix missing template 'users/new'</h2>
   app/views/users/new.html.erb created
   <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/features/registration_spec.rb 
       Capybara::ElementNotFound:
         Unable to find css "#new_user"
-  ]]></script></section><section id="users-new-spec" class="slide"><h2>View specs</h2>
+  ]]></script>
+</section><section id="users-new-spec" class="slide">
+  <h2>View specs</h2>
   spec/views/users/new_spec.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     require 'spec_helper'
@@ -186,7 +222,8 @@
         expect(rendered).to have_selector('form#new_user')
       end
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/views/users/new_spec.rb
     Capybara::ExpectationNotMet:
       expected to find css "form#new_user" but there were no matches
@@ -195,7 +232,8 @@
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     &lt;%= form_for @user do |f| %&gt;
     &lt;%- end %&gt;
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/views/users/new_spec.rb
     ActionView::Template::Error:
        undefined method 'users_path' for #<#<Class:0x007f91f5982a68>:0x007f91f5a36e78>
@@ -206,10 +244,13 @@
       get 'register', to: 'users#new', as: 'register'
       resources :users
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/views/users/new_spec.rb
     1 example, 0 failures
-  ]]></script></section><section id="users-new-specs" class="slide"><h2>More view specs</h2>
+  ]]></script>
+</section><section id="users-new-specs" class="slide">
+  <h2>More view specs</h2>
   spec/views/users/new_spec.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     require 'spec_helper'
@@ -258,7 +299,9 @@
     $ rspec spec/features/registration_spec.rb
     ActionView::Template::Error:
       First argument in form cannot contain nil or be empty
-  ]]></script></section><section id="user-controller-specs" class="slide"><h2>Controller specs</h2>
+  ]]></script>
+</section><section id="user-controller-specs" class="slide">
+  <h2>Controller specs</h2>
   spec/controllers/users_controller_spec.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     require 'spec_helper'
@@ -289,11 +332,14 @@
         @user = User.new
       end
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/controllers/users_controller_spec.rb
     NameError:
       uninitialized constant User
-  ]]></script></section><section id="user-model-specs" class="slide"><h2>Model specs</h2>
+  ]]></script>
+</section><section id="user-model-specs" class="slide">
+  <h2>Model specs</h2>
   spec/models/user_spec.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     require 'spec_helper'
@@ -305,7 +351,8 @@
       it { expect(user).to validate_uniqueness_of(:email) }
       it { expect(user).to validate_presence_of(:password) }
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rails g model User email:string password:string
       invoke  active_record
       create    db/migrate/20140121123310_create_users.rb
@@ -322,7 +369,8 @@
       validates :email, :password, presence: true
       validates :email, uniqueness: true
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/models/user_spec.rb
     3 examples, 0 failures
     
@@ -332,7 +380,9 @@
     $ rspec spec/features/registration_spec.rb
     AbstractController::ActionNotFound:
       The action 'create' could not be found for UsersController
-  ]]></script></section><section id="fix-the-action-create-could-not-be-found" class="slide"><h2>Fix the action 'create' could not be found error</h2>
+  ]]></script>
+</section><section id="fix-the-action-create-could-not-be-found" class="slide">
+  <h2>Fix the action 'create' could not be found error</h2>
   
   spec/controllers/users_controller_spec.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -400,11 +450,14 @@
         params.require(:user).permit(:email, :password)
       end
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/controllers/users_controller_spec.rb 
     NameError:
       undefined local variable or method 'root_url' for #<UsersController:0x007fbacc9f1918>
-  ]]></script></section><section id="fix-undefined-local-variable-or-method-root-url" class="slide"><h2>Fix undefined local variable or method 'root_url' error</h2>
+  ]]></script>
+</section><section id="fix-undefined-local-variable-or-method-root-url" class="slide">
+  <h2>Fix undefined local variable or method 'root_url' error</h2>
   config/routes.rb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     Bookstore::Application.routes.draw do
@@ -419,7 +472,8 @@
       def home
       end
     end
-  ]]></script><p>
+  ]]></script>
+  <p>
     app/views/pages/home.html.erb created
   </p>
   <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
@@ -429,7 +483,9 @@
     $ rspec spec/features/registration_spec.rb
     Failure/Error: expect(page).to have_content 'Sign out'
       expected to find text "Sign out" in ""
-  ]]></script></section><section id="fix-expected-to-find-text-sign-out" class="slide"><h2>Fix expected to find text 'Sign out'</h2>
+  ]]></script>
+</section><section id="fix-expected-to-find-text-sign-out" class="slide">
+  <h2>Fix expected to find text 'Sign out'</h2>
   app/views/lououts/application.html.erb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
   # ...
@@ -443,10 +499,13 @@
     &lt;%= yield %&gt;
   &lt;/body&gt;
   # ...
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[$ rspec spec/features/registration_spec.rb
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[$ rspec spec/features/registration_spec.rb
     Failure/Error: expect(page).to have_content 'You registered'
       expected to find text "You registered" in "Sign out"
-  ]]></script></section><section id="fix-expected-to-find-text-you-registered" class="slide"><h2>Fix expected to find text 'You registered'</h2>
+  ]]></script>
+</section><section id="fix-expected-to-find-text-you-registered" class="slide">
+  <h2>Fix expected to find text 'You registered'</h2>
   app/views/lououts/application.html.erb
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
   # ...
@@ -458,12 +517,16 @@
     # ...
   &lt;/body&gt;
   # ...
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     $ rspec spec/features/registration_spec.rb
     1 example, 0 failures
-  ]]></script></section><section id="Homework" class="slide"><h2>Homework</h2>
+  ]]></script>
+</section><section id="Homework" class="slide">
+  <h2>Homework</h2>
   <p>You need to write a simple web book store. Please implement the following user stories.</p>
-  <ul><li>An administrator can add/edit/delete books.</li>
+  <ul>
+    <li>An administrator can add/edit/delete books.</li>
     <li>An administrator can add/edit/delete categories.</li>
     <li>An administrator can add/edit/delete authors.</li>
     <li>An administrator can connect books to categories and authors.</li>
@@ -480,7 +543,11 @@
     <li>A user can put books into a "wish list" that is visible to other site visitors.</li>
     <li>A user can check the status of his recent orders.</li>
     <li>A user can view a history of all of his past orders.</li>
-  </ul></section><!-- End slides. --><!-- deck.navigation snippet --><a href="#" class="deck-prev-link" title="Previous">←</a>
+  </ul>
+</section><!-- End slides. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">←</a>
 <a href="#" class="deck-next-link" title="Next">→</a>
 
 <!-- deck.status snippet -->

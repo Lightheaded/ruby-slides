@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-   <head>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-      <meta charset="utf-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-      <title>Metaprogramming</title>
-      <link href="assets/metaprogramming.css" rel="stylesheet" />
-      <script src="assets/metaprogramming.js"></script>
-   </head>
-   <body class="deck-container">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Metaprogramming</title>
+  <link href="assets/metaprogramming.css" rel="stylesheet" />
+  <script src="assets/metaprogramming.js"></script>
+</head>
+
+<body class="deck-container">
   
 <!-- Begin slides. Just make elements with a class of slide. -->
-<section id="topic" class="slide"><div class="vcenter">
+<section id="topic" class="slide">
+  <div class="vcenter">
     <h1>Metaprogramming in Ruby</h1>
   </div>
-</section><section class="slide" id="open-classes"><h2>Open Classes</h2>
+</section><section class="slide" id="open-classes">
+  <h2>Open Classes</h2>
     <p>In Ruby, classes are never closed: you can always add methods to an existing class. This applies to the classes you write as well as the standard, built-in classes. All you have to do is open up a class definition for an existing class, and the new contents you specify will be added to whatever's there.</p>
     <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
       class D
@@ -32,17 +34,21 @@
       d = D.new
       d.x   # => 'X'
       d.y   # => 'Y'
-    ]]></script><script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+    ]]></script>
+    <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
       3.times do
         class C
           puts "hello"
         end
       end
-    ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+    ]]></script>
+    <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
       # => Hello
       # => Hello
       # => Hello
-    ]]></script></section><section class="slide" id="monkey-patch"><h2>Monkey See, Monkey Patch</h2>
+    ]]></script>
+</section><section class="slide" id="monkey-patch">
+  <h2>Monkey See, Monkey Patch</h2>
   <p>In Ruby, the term <i>monkey patch</i> means any dynamic modification to a class.</p>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     # Evil example
@@ -54,10 +60,12 @@
 
     1 + 2 # => -1
     # That is correct, I just turned addition into subtraction
-  ]]></script><p>
+  ]]></script>
+  <p>
     Monkey patching is a practice which involves substituting the pillars of an house: if you're not very careful in what you substitute, the whole building will collapse over your remains. Moreover, you may take down some underground stations full of people as well as a side-effect.
   </p>
-</section><section class="slide" id="classes"><h2>Classes</h2>
+</section><section class="slide" id="classes">
+  <h2>Classes</h2>
   <p>Classes themselves are nothing but objects.</p>  
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     "hello".class            # => String
@@ -69,19 +77,25 @@
 
     Class.superclass         # => Module
     Module.superclass        # => Object
-  ]]></script></section><section class="slide" id="dynamic_meths"><h2>Calling methods dynamically</h2>
+  ]]></script>
+</section><section class="slide" id="dynamic_meths">
+  <h2>Calling methods dynamically</h2>
   <p>The most common way for dynamic method calling is to send   a message to object.</p>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     "hi there".send(:length)  #=> 8
-  ]]></script><p>A Method object represents a chunk of code and a context in which it executes. Once we have our Method object, we can execute it sometime later by sending it the message call.</p>
+  ]]></script>
+  <p>A Method object represents a chunk of code and a context in which it executes. Once we have our Method object, we can execute it sometime later by sending it the message call.</p>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     method_object = "hi there".method(:length)
     method_object.call  #=> 8
-  ]]></script><p>Or just eval</p>
+  ]]></script>
+  <p>Or just eval</p>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     eval "'hi there'.length"  #=> 8
-  ]]></script><p>Instantiating a method object is the fastest dynamic way in calling a method, eval is the slowest one. Also when sending a message to an object, or when instantiating a method object, you can call private methods of that object.</p>
-</section><section class="slide" id="dynamic_def"><h2>Defining methods dynamically</h2>
+  ]]></script>
+  <p>Instantiating a method object is the fastest dynamic way in calling a method, eval is the slowest one. Also when sending a message to an object, or when instantiating a method object, you can call private methods of that object.</p>
+</section><section class="slide" id="dynamic_def">
+  <h2>Defining methods dynamically</h2>
   <p>You can define a method on the spot with <i>define_method()</i>. You just need to provide a method name and a block, which becomes the method body.</p>
 
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -96,7 +110,9 @@
     obj = MyClass.new
     obj.triple(2)
     # => 6
-  ]]></script></section><section class="slide" id="dynamic_undef"><h2>Undefining methods</h2>
+  ]]></script>
+</section><section class="slide" id="dynamic_undef">
+  <h2>Undefining methods</h2>
   <p>A method can be undefined any time, as well as defined.</p>
 
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -108,7 +124,9 @@
 
     obj = MyClass.new      # => #&lt;MyClass:0x9170850>
     obj.meth1              # => "meth1 called"
-  ]]></script><br /><script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+  ]]></script>
+  <br />
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class MyClass
       undef meth1
       remove_method :meth2
@@ -118,7 +136,9 @@
     obj.meth1              # => NoMethodError
     obj.meth2              # => NoMethodError
     obj.meth3              # => NoMethodError
-  ]]></script></section><section class="slide" id="dynamic_class"><h2>Defining classes dynamically</h2>
+  ]]></script>
+</section><section class="slide" id="dynamic_class">
+  <h2>Defining classes dynamically</h2>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     MyClass = Class.new do
       define_method :my_method do
@@ -128,7 +148,9 @@
 
     MyClass.new.my_method 
     => "Method call"
-  ]]></script></section><section class="slide" id="undefining-class"><h2>Undefining class</h2>
+  ]]></script>
+</section><section class="slide" id="undefining-class">
+  <h2>Undefining class</h2>
 
   <p>As a class is just an object in the memory, which is identified by the constant, destroying a constant will cause a class itself to be removed by GC</p>
 
@@ -136,7 +158,9 @@
     Object.send(:remove_const, :MyClass)
 
     obj = MyClass.new    # => NameError: unitialized constant
-  ]]></script></section><section class="slide" id="method-missing"><h2>Method missing</h2>
+  ]]></script>
+</section><section class="slide" id="method-missing">
+  <h2>Method missing</h2>
   <p>When you send a message to an object, the object executes the first method it finds on its method lookup path with the same name as the message. If it fails to find any such method, it end up with <strong>method_missing</strong> method, where a NoMethodError exception is raised unless you have provided other behavior for it. The method_missing method is passed the symbol of the non-existent method, an array of the arguments that were passed in the original call and any block passed to the original method.</p>
 
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -149,7 +173,9 @@
         end
       end
     end
-  ]]></script></section><section class="slide" id="alias"><h2>Method aliases</h2>
+  ]]></script>
+</section><section class="slide" id="alias">
+  <h2>Method aliases</h2>
   <div class="row">
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class MyClass
@@ -165,7 +191,8 @@
       alias_method :m2, :m
     end
     obj.m2            # => 'my_method'
-  ]]></script></div>
+  ]]></script>
+  </div>
 
   <h2 class="not-capitalized">What happens if you alias a method and then redefine it?</h2>
   <div class="row">
@@ -180,8 +207,10 @@
 
     "War and Peace".real_length   # => 13
     "War and Peace".length        # => 'long'
-  ]]></script></div>
-</section><section class="slide" id="instance-variable-meths"><h2>Instance variables <br /> instance_variable_get(), instance_variable_set(), instance_variable_defined?()</h2>
+  ]]></script>
+  </div>
+</section><section class="slide" id="instance-variable-meths">
+  <h2>Instance variables <br /> instance_variable_get(), instance_variable_set(), instance_variable_defined?()</h2>
   <div class="row">
     <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
       class MyClass
@@ -197,8 +226,10 @@
       puts c.instance_variable_set(:@c, "cat")  # => "cat"
       puts c.instance_variable_defined?(:@c)    # => true
       puts c.instance_variable_get(:@c)         # => "cat"
-    ]]></script></div>
-</section><section class="slide" id="scope-gate"><h2>Blocks and local variables</h2>
+    ]]></script>
+  </div>
+</section><section class="slide" id="scope-gate">
+  <h2>Blocks and local variables</h2>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     my_var = 'Success!'
 
@@ -211,10 +242,12 @@
     end
 
     MyClass.new.my_method
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     undefined local variable or method
     `my_var` for MyClass::Class (NameError)
-  ]]></script><div class="slide" id="scope-closing">
+  ]]></script>
+  <div class="slide" id="scope-closing">
     <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
       my_var = 'Success'
 
@@ -227,11 +260,14 @@
       end
 
       MyClass.new.my_method
-    ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+    ]]></script>
+    <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
       Success in class definition
       Success in the method
-    ]]></script></div>
-</section><section class="slide" id="shared_var"><h2>Methods with shared variable</h2>
+    ]]></script>
+  </div>
+</section><section class="slide" id="shared_var">
+  <h2>Methods with shared variable</h2>
   <div class="row">
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     def define_methods
@@ -250,8 +286,10 @@
     puts counter    # => 0
     inc(4)
     puts counter    # => 4
-  ]]></script></div>
-</section><section class="slide" id="binding"><h2>Binding</h2>
+  ]]></script>
+</div>
+</section><section class="slide" id="binding">
+  <h2>Binding</h2>
   <p>In Ruby current binding can be captured, and any code can be evaluated in that captured scope, any time.</p>
   <div class="row">
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -268,8 +306,10 @@
 
     puts local_with_binding(binding)  # => "top level local"
     puts my_meth                      # => "local from the inside"
-  ]]></script></div>
-</section><section class="slide" id="instance-eval"><h2 class="not-capitalized">instance_eval and instance_exec</h2>
+  ]]></script>
+</div>
+</section><section class="slide" id="instance-eval">
+  <h2 class="not-capitalized">instance_eval and instance_exec</h2>
   <p><strong>instance_eval</strong> method evaluates a string containing Ruby source code, or the given block, within the context of the receiver (obj).</p>
   <div class="row">
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -290,8 +330,10 @@
     obj.instance_eval { @v }    # => 2
 
     obj.instance_exec(3) { |multiplier| @v * multiplier } # => 6
-  ]]></script></div>
-</section><section class="slide" id="class-eval"><h2>Class eval</h2>
+  ]]></script>
+</div>
+</section><section class="slide" id="class-eval">
+  <h2>Class eval</h2>
   <p><strong>class_eval</strong> (also known by its alternate name, <strong>module_eval</strong>) evaluates a block in the context of an existing class.</p>
   <div class="row">
     <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
@@ -305,8 +347,10 @@
 
       add_method_to String
       "abc".m   # => "Hello!"
-    ]]></script></div>
-</section><section class="slide" id="methods-binding"><h2 class="not-capitalized">Method Objects binding</h2>
+    ]]></script>
+  </div>
+</section><section class="slide" id="methods-binding">
+  <h2 class="not-capitalized">Method Objects binding</h2>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class MyClass
       def initialize(value)
@@ -330,7 +374,9 @@
     another_object = MyClass2.new(2)
     m = unbound.bind(another_object)
     m.call # => 2
-  ]]></script></section><section class="slide" id="runtime"><h2 class="not-capitalized">Runtime introspection</h2>
+  ]]></script>
+</section><section class="slide" id="runtime">
+  <h2 class="not-capitalized">Runtime introspection</h2>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class MyClass
       def my_method
@@ -363,7 +409,9 @@
 
     MyClass.instance_methods == obj.methods # => false, should be true but we have 'my_singleton' method
     MyClass.methods == obj.methods          # => false
-  ]]></script></section><section class="slide" id="hooks"><h2>Hook methods</h2>
+  ]]></script>
+</section><section class="slide" id="hooks">
+  <h2>Hook methods</h2>
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     class String
       def self.inherited(subclass)
@@ -400,7 +448,8 @@
 
     def str.yay_method
     end
-  ]]></script><script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
     >> ruby hooks.rb
     
     New method: M#my_method
@@ -408,7 +457,9 @@
     M was mixed in MyString
     not existing method yay! was called
     New singleton method: yay_method
-  ]]></script></section><section class="slide" id="class-instance"><h2 class="not-capitalized">Class plus instance methods</h2>
+  ]]></script>
+</section><section class="slide" id="class-instance">
+  <h2 class="not-capitalized">Class plus instance methods</h2>
   <div class="row">
   <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     module MyMixin
@@ -433,8 +484,10 @@
 
     C.new.x         # => x()
     C.y             # => y()
-  ]]></script></div>
-</section><section id="struct" class="slide"><h2>Struct</h2>
+  ]]></script>
+</div>
+</section><section id="struct" class="slide">
+  <h2>Struct</h2>
   <p>
     Follow by <a href="http://www.ruby-doc.org/core-2.0.0/Struct.html" target="_blank">http://www.ruby-doc.org/core-2.0.0/Struct.html</a> for more information.
   </p>
@@ -450,7 +503,8 @@
     joe[:name]
     joe[0]
     => "Joe Smith"
-  ]]></script><script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+  ]]></script>
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
     Customer = Struct.new(:name, :address) do
       def greeting
         "Hello #{name}!"
@@ -458,12 +512,15 @@
     end
     Customer.new("Dave", "123 Main").greeting 
     => "Hello Dave!"
-  ]]></script><div class="slide" id="struct-homework">
+  ]]></script>
+  <div class="slide" id="struct-homework">
     <h3>Homework</h3>
     <p>Please implement your own class 'Factory' which will have the same behavior as 'Struct' class.</p>
   </div>
-</section><section class="slide" id="homework"><h2>Hometask</h2>
-  <img src="/public/metaprogramming/assets/metakoans.png" alt="metakoans.rb" /><script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+</section><section class="slide" id="homework">
+  <h2>Hometask</h2>
+  <img src="/public/metaprogramming/assets/metakoans.png" alt="metakoans.rb" />
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
 #
 # metakoans.rb is an arduous set of exercises designed to stretch
 # meta-programming muscle.  the focus is on a single method 'attribute' which
@@ -758,7 +815,13 @@ end
 knowledge = ARGV.shift or abort "#{ $0 } knowledge.rb"
 student = MetaStudent::new knowledge 
 MetaGuru.enlighten student
-  ]]></script></section><!-- End slides. --><!-- deck.navigation snippet --><a href="#" class="deck-prev-link" title="Previous">←</a>
+  ]]></script>
+</section>
+
+<!-- End slides. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">←</a>
 <a href="#" class="deck-next-link" title="Next">→</a>
 
 <!-- deck.status snippet -->
@@ -767,9 +830,6 @@ MetaGuru.enlighten student
   /
   <span class="deck-status-total"></span>
 </p>
-
-<!-- deck.hash snippet -->
-<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
 </body>
 </html>

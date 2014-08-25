@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Writing Tests</title>
+  <link href="assets/testing.css" rel="stylesheet" />
+  <script src="assets/testing.js"></script>
+</head>
+
+<body class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+<section id="topic" class="slide">
+  <div class="vcenter">
+    <h1>Writing Tests</h1>
+  </div>
+</section>
+<section id="general" class="slide">
+  <div class="vcenter">
+    <h1>Let's think of "Testing" in general...</h1>
+  </div>
+</section>
+
+<section id="irl" class="slide">
+  <h2>Testing in real life</h2>
+  <ul>
+    <li class="slide" id="irl-exampel-1">
+      <p>What are you testing, when you leave your apartment?</p>
+    </li>
+    <li class="slide" id="irl-exampel-2">
+      <p>What are you testing, when you about to drive a car?</p>
+    </li>
+    <li class="slide" id="irl-what-is-common">
+      <p>What is the common in all those cases?</p>
+    </li>
+  </ul>
+  <p class="slide" id="irl-the-common-is">The common is: you think before doing.</p>
+</section>
+
+<section class="slide" id="irl-what-is-it-giving">
+  <h2>What does the testing gives to you?</h2>
+  <ul>
+    <li class="slide" id="irl-makes-think">Makes you think first</li>
+    <li class="slide" id="irl-common-behaviour">Provides common behaviour and habits</li>
+    <li class="slide" id="irl-gives-confidence">And gives confidence in what you are doing</li>
+  </ul>
+</section>
+
+<section class="slide" id="irl-dev">
+  <h2>Wait a minute? Isn't this lecture about Software Development?!</h2>
+  <h3 class="slide" id="irl-dev">It is!</h3>
+  <ul>
+    <li class="slide" id="irl-dev-think">"Test-first" makes you think and analyze</li>
+    <li class="slide" id="irl-dev-habits">"Writing tests every day" trains your habits to write tests</li>
+    <li class="slide" id="irl-dev-confidence">"Having a test suit" lets you experiment and not afraid of changes</li>
+  </ul>
+</section>
+
+<section class="slide" id="irl-stability">
+  <h2>If it works - don't touch!</h2>
+  <p class="slide" id="irl-stability-good">Stability is good: thing just work</p>
+  <p class="slide" id="irl-stability-bad">Stability is bad: you can't just change things</p>
+  <p class="slide" id="irl-changes-bad">Changes are bad: they ruin working things</p>
+  <p class="slide" id="irl-changes-good">Changes are good: you create something new</p>
+</section>
+
+<section class="slide" id="irl-stability-choose">
+  <h2>What would you choose: stability or changes?</h2>
+  <h3 class="slide" id="irl-stability-i-will-choose">I'd choose safe changes!</h3>
+</section>
+<section class="slide" id="not-implemented">
+  <h2>What are criteria of job, that is done?</h2>
+  <ul>
+    <li class="slide" id="not-implemented-criterion-1">I can test it.</li>
+  </ul>
+  <h3 class="slide" id="not-implemented-how-shall-i-test">How many times shall I test?</h3>
+</section>
+<section class="slide" id="value-dev-0">
+  <h2>What do tests actually provide?</h2>
+  <ul>
+    <li class="slide" id="value-design">
+      <h3>Design and Architecture</h3>
+      <p>Think before doing. Simple things are tested in a simple way.</p>
+    </li>
+    <li class="slide" id="value-doc">
+      <h3>Documentation</h3>
+      <p>No one likes to write docs. So they are inconsistent and not relevant at the end of the day.</p>
+    </li>
+    <li class="slide" id="value-examples">
+      <h3>Examples of usage</h3>
+      <p>So I can go and see how this class can be used and what are the methods behaviour.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="value-dev-1">
+  <h2>What do tests actually provide?</h2>
+  <ul>
+    <li class="slide" id="value-mvp">
+      <h3>Minimum Valuable set of features</h3>
+      <p>Features implemented one by one, listed by sets of tests. And each of tests indicate the job needs to be done.</p>
+    </li>
+    <li class="slide" id="value-protection">
+      <h3>Feeling of confidence</h3>
+      <p>Adding new features, without fear of "side-effects". Refactoring starts from here.</p>
+    </li>
+    <li class="slide" id="value-velocity">
+      <h3>Debug and fix errors faster</h3>
+      <p>Write test, that reproduces a bug, find the bug, fix it. ... PROFIT!</p>
+    </li>
+    <li class="slide" id="value-motivation">
+      <h3>One big journey starts from a single <del>step</del> test</h3>
+      <p>Write a test, make it pass, refactor it, repeat. All the big systems start with a first test.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="value-biz-0">
+  <h2>Concerns of business?</h2>
+  <ul>
+    <li class="slide" id="value-time-consuming">
+      <h3>Is it adds more time for development?</h3>
+      <p>Yes, it does.</p>
+    </li>
+    <li class="slide" id="value-growing-volume-of-code">
+      <h3>Is the volume of code increases?</h3>
+      <p>Yes, it does.</p>
+    </li>
+    <li class="slide" id="value-adding-to-legacy">
+      <h3>We have a product already running. Do we really need to have those tests?</h3>
+      <p>Yes, you are.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="value-biz-1">
+  <h2>What is the value to the business?</h2>
+  <ul>
+    <li class="slide" id="value-save-time">
+      <h3>Save time</h3>
+      <p>Initial code + tests takes less time, as the developers don't do any manual checks and adding of data. Later, it is easy to find problems and collaborate.</p>
+    </li>
+    <li class="slide" id="value-tests-are-code">
+      <h3>Code of tests is valuable</h3>
+      <p>As in first point, everything, that helps to deliver more stuff saves money. And code of tests has even more value, than actual program code.</p>
+    </li>
+    <li class="slide" id="value-add-tests-to-legacy">
+      <h3>Ensuring, that everything really works</h3>
+      <p>If a software has no tests, add them, so you confident in a requirements, it supports.</p>
+    </li>
+  </ul>
+</section>
+<section id="general" class="slide">
+  <div class="vcenter">
+    <h1>Now can we look under the hood?... a little</h1>
+  </div>
+</section>
+
+<section class="slide" id="structure">
+  <h2>So how the test looks like?</h2>
+  <ol>
+    <li class="slide" id="structure-step-1">Setup</li>
+    <li class="slide" id="structure-step-2">Do an action</li>
+    <li class="slide" id="structure-step-3">See results</li>
+  </ol>
+
+  <h3 class="slide" id="structure-easy">Like a piece of cake? ;)</h3>
+</section>
+
+<section class="slide" id="structure-setup">
+  <h2>1. How to setup?</h2>
+  <p class="slide" id="structure-setup-prepare">
+    Put everything into initial state:
+    </p><ul class="slide">
+      <li>Clean environment</li>
+      <li>Load data</li>
+    </ul>
+  
+  <h3 class="slide" id="structure-setup-each-test">Do it for each test!</h3>
+</section>
+
+<section class="slide" id="structure-action">
+  <h2>2. Calling a method... what can be easier?</h2>
+  <p class="slide" id="structure-action-call">
+    However, "action" is not "action<strong>s</strong>".
+    </p><ul class="slide">
+      <li>One action per test</li>
+      <li>Should be seen clearly</li>
+    </ul>
+  
+</section>
+
+<section class="slide" id="structure-verify">
+  <h2>3. And verify</h2>
+  <p class="slide" id="structure-verify-howto">
+    The Golden Rule: one assertion per test.
+    </p><ul>
+      <li class="slide" id="structure-verify-1">One assertion per test</li>
+      <li class="slide" id="structure-verify-2">The failure message is clear</li>
+      <li class="slide" id="structure-verify-3">No changes to the tested object while asserting</li>
+      <li class="slide" id="structure-verify-4">... or anywhere else</li>
+    </ul>
+  
+</section>
+
+<section class="slide" id="structure-verify-assertions">
+  <h2>Why can't I do a lot of assertions?
+  <h3 class="slide" id="structure-verify-assertions-lot-of">
+    To see what is exactly broken.
+  </h3>
+</h2></section>
+
+<section class="slide" id="structure-next">
+  <h2>What is after the verification?
+  <h3 class="slide" id="structure-next-clean">
+    Back to point one. But the environment must be clean.
+  </h3>
+</h2></section>
+<section id="types" class="slide">
+  <div class="vcenter">
+    <h1>The types of tests</h1>
+  </div>
+</section>
+
+<section id="types-unit" class="slide">
+  <div class="vcenter">
+    <h1>Unit Tests</h1>
+  </div>
+</section>
+
+<section id="types-unit-definition" class="slide">
+  <h2>Unit Tests</h2>
+  <p>Test for the most tiny "units" of code. Those units are the smallest testable parts.</p>
+</section>
+
+<section class="slide" id="types-unit-what-to-test">
+  <h2>How to find those units of code?</h2>
+  <ul>
+    <li class="slide" id="types-unit-what-to-test-methods">Class methods (in OOP)</li>
+    <li class="slide" id="types-unit-what-to-test-functions">Functions (in FProg)</li>
+    <li class="slide" id="types-unit-what-to-test-procedures">SQL procedures</li>
+  </ul>
+</section>
+
+<section class="slide" id="types-unit-howto">
+  <h2>How to test?</h2>
+  <p>The step for "Environment Setup" is done</p>
+  <ol>
+    <li class="slide" id="types-unit-howto-1">Pass an arguments list (if necessary)</li>
+    <li class="slide" id="types-unit-howto-2">Test for optional arguments</li>
+    <li class="slide" id="types-unit-howto-3">Try different combinations of arguments</li>
+    <li class="slide" id="types-unit-howto-4">Check the returned result</li>
+    <li class="slide" id="types-unit-howto-5">Check the commands sent</li>
+    <li class="slide" id="types-unit-howto-6">Stub queries to external classes</li>
+  </ol>
+</section>
+
+<section class="slide" id="types-unit-example">
+  <h2>Example</h2>
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+    class Notifier
+      attr_reader :recipient, :message, :backend
+
+      def notify!
+        id = SecureRandom.uuid
+        backend.post(id, recipient, message)
+      end
+
+      def initialize(recipient, message, backend=EmailBackend)
+        @recipient = recipient
+        @message   = message
+        @backend   = backend
+      end
+    end
+  ]]></script>
+</section>
+
+<section class="slide" id="types-unit-example-what-to-test">
+  <h2>What shall we test?</h2>
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+    class Notifier
+      attr_reader :rec #... <- what are values if we initialize
+
+      def notify!
+        id = SecureRan #... <- stub this query
+        backend.post(i #... <- what is called if we call #notify!
+      end
+
+      def initialize(r #... <- what happens if we do not set 'backend'
+        @recipient = r #...
+        @message   = m #...
+        @backend   = b #...
+      end
+    end
+  ]]></script>
+</section>
+
+<section class="slide" id="types-unit-the-query">
+  <h2>What is the "query"?</h2>
+  <p>This is a message to an object, that not affects it's internal state.</p>
+  <p>In short: <strong>no side-effects</strong>.</p>
+
+  <div class="slide" id="types-unit-query-examples">
+    <h3>Examples:</h3>
+    <ul>
+      <li>SELECT from database</li>
+      <li>HTTP GET of white-listed IPs</li>
+      <li>Disk read of log file</li>
+    </ul>
+    <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+      #...
+      id = SecureRandom.uuid
+      #...
+    ]]></script>
+  </div>
+</section>
+
+<section class="slide" id="types-unit-the-command">
+  <h2>What is the "command"?</h2>
+  <p>This is a message to an object, that affects it's internal state.</p>
+  <p>In short: <strong>having side-effects</strong>.</p>
+
+  <div class="slide" id="types-unit-command-examples">
+    <h3>Examples:</h3>
+    <ul>
+      <li>INSERT to database</li>
+      <li>HTTP POST for web-hook</li>
+      <li>Write to log-file</li>
+      <li>Just +1 of attribute of a singleton class</li>
+    </ul>
+    <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+      #...
+      backend.post(id, recipient, message)
+      #...
+    ]]></script>
+  </div>
+</section>
+
+<section class="slide" id="types-unit-cut-corners">
+  <h2>Cutting corners...</h2>
+  <ul>
+    <li class="slide" id="types-unit-cut-corners-reasonable">
+      <h3>Be reasonable</h3>
+      <p>Trying to test all the cases is good, but if you write 100500 tests for a single method...</p>
+    </li>
+    <li class="slide" id="types-unit-cut-corners-minimum-set">
+      <h3>Start with minimum set of tests</h3>
+      <p>One test at a time. Each test describes a single 'requirement'</p>
+      <ul>
+        <li class="slide" id="types-unit-cut-corners-minimum-set-1">
+          Test necessary "good scenarios"
+        </li>
+        <li class="slide" id="types-unit-cut-corners-minimum-set-2">
+          Test likely to happen "bad scenarios"
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-unit-cut-corners-2">
+  <h2>Cutting corners...</h2>
+  <ul>
+    <li class="slide" id="types-unit-cut-corners-public-api">
+      <h3>Test only public class API methods</h3>
+      <p>Tests will become an obstacle if you start adding cases for every single private API method.</p>
+    </li>
+    <li class="slide" id="types-unit-cut-corners-design">
+      <h3>Mind your Object Design</h3>
+      <p>Small things are easy to test. Imagine: 3 public API methods vs. 333</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-unit-problem">
+  <h2>The problem</h2>
+  <h3>Having a pile of clock parts not means having a working clock...</h3>
+</section>
+<section id="types-integration" class="slide">
+  <div class="vcenter">
+    <h1>Integration Tests</h1>
+  </div>
+</section>
+
+<section id="types-integration-definition" class="slide">
+  <h2>Integration Tests</h2>
+  <p>Test of combination of classes and modules. The purpose is to be sure, that the messages, which were stubbed in Unit Tests are actually sent and handled properly.</p>
+</section>
+
+<section class="slide" id="types-integration-what-to-test">
+  <h2>What do I need to combine?</h2>
+  <ul>
+    <li class="slide" id="types-integration-what-to-test-high-level-api">
+      High-level API of classes and modules
+    </li>
+    <li class="slide" id="types-integration-what-to-test-components">
+      Components of the entire system
+    </li>
+    <li class="slide" id="types-integration-what-to-test-sub-systems">
+      Sub-systems
+    </li>
+  </ul>
+
+  <h3 class="slide" id="types-integration-what-to-test-fractal">This is like fractal - you can test any order of components till you reach the top of the entire system.</h3>
+</section>
+
+<section class="slide" id="types-integration-howto">
+  <h2>How to test?</h2>
+  <p>The step for "Environment Setup" is done...<br />
+  but, it can be: adding 100500 records or starting 10 servers.</p>
+  <ol>
+    <li class="slide" id="types-integration-howto-1">Send a message to an API endpoint</li>
+    <li class="slide" id="types-integration-howto-2">Try different payloads if necessary</li>
+    <li class="slide" id="types-integration-howto-3">Check the returned result</li>
+    <li class="slide" id="types-integration-howto-4">Check the expected side-effects</li>
+    <li class="slide" id="types-integration-howto-5">Ensure, the errors are handled properly</li>
+  </ol>
+</section>
+
+<section class="slide" id="types-integration-example">
+  <h2>Example</h2>
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+    class NotificationsController < Grape::API
+      helpers API::Authentication
+      resource :notifications do
+        params do
+          group :notification, type: Hash do
+            requires(:recipient, type: String)
+            requires(:message,   type: String)
+          end
+        end
+
+        post do
+          Notifier.new(params[:notification][:recipient],
+                       params[:notification][:message]).
+                   notify!
+
+          {code: 200, status: 'OK', message: 'Notification sent'}
+        end
+      end
+    end
+  ]]></script>
+</section>
+
+<section class="slide" id="types-integration-example-what-to-test">
+  <h2>What shall we test?</h2>
+  <script type="syntaxhighlighter" class="brush: ruby"><![CDATA[
+    class Notifications #
+      helpers API::Auth # <- Does authenication works
+      resource :notific #
+        params do
+          group :notifi # <- What if parameters are empty?
+            requires(:r # <- ... or wrong?
+            requires(:m #
+          end
+        end
+
+        post do         # <- This is our API endpoint
+          Notifier.new( # <- Have anything happened?
+                        #
+                   noti # <- What if error raised?
+
+          {code: 200, s # <- What did the API returned?
+        end
+      end
+    end
+  ]]></script>
+</section>
+
+<section class="slide" id="types-integration-queries-and-commands">
+  <h2>What about external API calls?</h2>
+  <ul>
+    <li class="slide" id="types-integration-qnc-stub">Can be just stubbed</li>
+    <li class="slide" id="types-integration-qnc-record">Can be real, but just for the first time</li>
+    <li class="slide" id="types-integration-qnc-run">Can always be real, but requires a kind of external manager, to start everything</li>
+  </ul>
+</section>
+
+<section class="slide" id="types-integration-cut-corners">
+  <h2>Cutting corners...</h2>
+  <ul>
+    <li class="slide" id="types-integration-cut-corners-reasonable">
+      <h3>Be reasonable</h3>
+      <p>Implement business-valuable scenarios</p>
+    </li>
+    <li class="slide" id="types-integration-cut-corners-minimum-set">
+      <h3>Start with minimum set of tests</h3>
+      <ul>
+        <li class="slide" id="types-integration-cut-corners-minimum-set-1">
+          Test necessary "good scenarios"
+        </li>
+        <li class="slide" id="types-integration-cut-corners-minimum-set-2">
+          Test likely to happen "bad scenarios"
+        </li>
+      </ul>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-integration-cut-corners-2">
+  <h2>Cutting corners...</h2>
+  <ul>
+    <li class="slide" id="types-integrations-cut-corners-visible-interactions">
+      <h3>Test only visible interactions</h3>
+      <p>Think of main actors of your scenario - HTTP requests, Database, UI</p>
+    </li>
+    <li class="slide" id="types-unit-cut-corners-design">
+      <h3>Mind your API Design</h3>
+      <p>A RESTfull API endpoint, that is in charge for one resource is simpler, than an HTTP RPC endpoint</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="types-integration-problem">
+  <h2>The problem</h2>
+  <h3>Having an engine, gear box and weal in a pile, not means having a car...</h3>
+</section>
+
+<section id="testing-is-fractal" class="slide">
+  <div class="vcenter">
+    <h1>Have you seen similarity in Unit and Integration?</h1>
+  </div>
+</section>
+
+<section id="testing-is-infinit" class="slide">
+  <div class="vcenter">
+    <h1>∞</h1>
+  </div>
+</section>
+<section id="mind-external-things" class="slide">
+  <div class="vcenter">
+    <h1>Splitting ∞ to pieces</h1>
+  </div>
+</section>
+
+<section class="slide" id="mind-external-things-approaches">
+  <h2>How can we prepare the environment?</h2>
+  <ul>
+    <li class="slide" id="mind-external-things-approaches-http">
+      <h3>Stub HTTP</h3>
+      <p>
+        Good: tests can run offline and not rely on external systems.<br />
+        Bad: API of external systems may change.
+      </p>
+    </li>
+    <li class="slide" id="mind-external-things-approaches-shell">
+      <h3>Stub shelling-out</h3>
+      <p>
+        Good: do not rely on 'ffmpeg', 'catdoc', 'cp /log/1-gig.log /log/1-gig.1.log'.<br />
+        Bad: is the product ready for Linux distro upgrade?
+      </p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="mind-external-things-approaches">
+  <h2>How can we prepare the environment?</h2>
+  <ul>
+    <li class="slide" id="mind-external-things-approaches-time">
+      <h3>Stub time</h3>
+      <p>I can't find any bad effects, but if there are many things, rely on 'Time.now'...</p>
+    </li>
+    <li class="slide" id="mind-external-things-approaches-io">
+      <h3>Stub file IO</h3>
+      <p>Using '/dev/null' or in-memory data structures as input can speed up the tests</p>
+    </li>
+  </ul>
+</section>
+<section id="seeding-data" class="slide">
+  <div class="vcenter">
+    <h1>Seeding data</h1>
+  </div>
+</section>
+
+<section class="slide" id="seeding-data-approaches">
+  <h2>One of main preparations - data seeding.</h2>
+  <ul>
+    <li class="slide" id="seeding-data-approaches-sql">Just run an SQL command(s)</li>
+    <li class="slide" id="seeding-data-approaches-yaml">Take data from YAML files</li>
+    <li class="slide" id="seeding-data-approaches-factory">Use special "factory" classes to generate data</li>
+    <li class="slide" id="seeding-data-approaches-random">Random or hard-coded data, what would be the best?</li>
+  </ul>
+</section>
+
+<section id="tdd" class="slide">
+  <div class="vcenter">
+    <h1>TDD</h1>
+  </div>
+</section>
+
+<section class="slide" id="tdd-in-short">
+  <h2>Test-driven Development</h2>
+  <p>Warning! The slide is opinionated, because of nature of this methodology.</p>
+  <ul>
+    <li class="slide" id="tdd-in-short-1">A methodology, not a type of tests</li>
+    <li class="slide" id="tdd-in-short-2">... related to the test-first programming concepts of extreme programming, begun in 1999</li>
+    <li class="slide" id="tdd-in-short-3">There is a thing, called Acceptance Test-Driven Development (ATDD)</li>
+    <li class="slide" id="tdd-in-short-4">A buzz word</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-test">
+  <h2>1. Writing test</h2>
+  <p>This is most hard: test-first. Try not to think, on code implementation.</p>
+  <ul>
+    <li class="slide" id="tdd-test-1">Answer the question: how can I test it?</li>
+    <li class="slide" id="tdd-test-2">Write a description of test (on your native language, if necessary)</li>
+    <li class="slide" id="tdd-test-3">Describe in code, how would you test the result. What should change? (Testing, step #3)</li>
+    <li class="slide" id="tdd-test-4">Write how you would commit an action on the tested object (Testing, step #2)</li>
+    <li class="slide" id="tdd-test-5">Add code for setting up the environment (Testing, step #1)</li>
+    <li class="slide" id="tdd-test-6">Launch test, ensure, that it fails because the method is not implemented or not behaves properly</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-implement">
+  <h2>2. Implementing</h2>
+  <p>Do this quick, but not in a sloppy way.</p>
+  <ul>
+    <li class="slide" id="tdd-implement-1">Implement the functionality in the application code</li>
+    <li class="slide" id="tdd-implement-2">Ensure, that test passes</li>
+    <li class="slide" id="tdd-implement-3">Commit to DVCS ;)</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-refactoring">
+  <h2>3. Refactoring</h2>
+  <p>You must implement a bigger unit, than just one method - one test.</p>
+  <ul>
+    <li class="slide" id="tdd-refactoring-1">Observe tests, you have</li>
+    <li class="slide" id="tdd-refactoring-2">Refactor them</li>
+    <li class="slide" id="tdd-refactoring-3">Observe and refactor application code</li>
+  </ul>
+</section>
+
+<section class="slide" id="tdd-circle">
+  <h2>TDD Circle</h2>
+  <img class="tdd-cycle" src="/public/testing/assets/tdd-cycles.png" />
+</section>
+<section id="bdd" class="slide">
+  <div class="vcenter">
+    <h1>BDD</h1>
+  </div>
+</section>
+
+<section class="slide" id="bdd-in-short">
+  <h2>Behaviour-driven Development</h2>
+  <p>It is about implementing an application by describing its behaviour from the perspective of its stakeholders.</p>
+  <ul>
+    <li class="slide" id="bdd-in-short-1">Combines the general techniques and principles of TDD</li>
+    <li class="slide" id="bdd-in-short-2">... with ideas from domain-driven design</li>
+    <li class="slide" id="bdd-in-short-3">... and object-oriented analysis and design</li>
+    <li class="slide" id="bdd-in-short-4">Provides software development and management teams with shared tools and a shared process to collaborate on software development</li>
+  </ul>
+</section>
+
+<section class="slide" id="bdd-howto">
+  <h2>How to develop based on behaviour?</h2>
+  <ul>
+    <li class="slide" id="bdd-howto-1">Ask PM for a use cases and user story</li>
+    <li class="slide" id="bdd-howto-2">Ask "Why?" as many times as you need</li>
+    <li class="slide" id="bdd-howto-3">When everything is clear start implementing...</li>
+    <li class="slide" id="bdd-howto-4">... tests to make sure that user story is tested</li>
+    <li class="slide" id="bdd-howto-5">... use principles from TDD</li>
+  </ul>
+</section>
+
+<section class="slide" id="bdd-circle">
+  <h2>BDD Circle</h2>
+  <img class="bdd-cycle" src="/public/testing/assets/bdd-cycle-around-tdd-cycles.png" />
+</section>
+
+<section class="slide" id="bdd-user-story-example">
+  <h2>How can user story look like?</h2>
+
+  <p class="slide" id="bdd-use-1">
+    As a user <i class="slide" id="bdd-use-1">(a 'person' or 'character')</i><br />
+    I want to add a new mac book pro to the shopping cart <i class="slide" id="bdd-use-1">(describe what the character wants)</i><br />
+    So I can check it out later <i class="slide" id="bdd-use-1">(the motivation or the reason, why character wants to do so)</i>
+  </p>
+</section>
+
+<section class="slide" id="bdd-whys">
+  <h2>5 Whys</h2>
+  <p>Is an iterative question-asking technique used to explore the cause-and-effect relationships underlying a particular problem.</p>
+
+  <h3 class="slide" id="bdd-whys-purpose">So keep asking "Why?" if you really want to implement helpful behaviour.</h3>
+</section>
+<section id="getting-together" class="slide">
+  <div class="vcenter">
+    <h1>Getting everything together</h1>
+  </div>
+</section>
+
+<section id="getting-together-scenario" class="slide">
+  <h2>How I start developing products?</h2>
+  <ul>
+    <li class="slide" id="getting-together-scenario-1">Gather user-stories. Ask questions. Think of domain in general</li>
+    <li class="slide" id="getting-together-scenario-2">Get the page mockups or API blueprints</li>
+    <li class="slide" id="getting-together-scenario-3">Write first <strong>Acceptance tests</strong></li>
+    <li class="slide" id="getting-together-scenario-4">Start implementing details</li>
+    <li class="slide" id="getting-together-scenario-5">Write <strong>Unit tests</strong> for classes</li>
+    <li class="slide" id="getting-together-scenario-6">Make the first acceptance and unit tests pass</li>
+    <li class="slide" id="getting-together-scenario-7">Implement persistance by adding "tests-first"</li>
+    <li class="slide" id="getting-together-scenario-8">Refactor!</li>
+  </ul>
+</section>
+<section id="additional-tools" class="slide">
+  <div class="vcenter">
+    <h1>Additional tools</h1>
+  </div>
+</section>
+
+<section class="slide" id="additional-tools-mutation">
+  <h2>Mutation testing</h2>
+  <ul>
+    <li class="slide" id="additional-tools-mutation-1">Used to design new software tests and evaluate the quality of existing software tests</li>
+    <li class="slide" id="additional-tools-mutation-2">By testing completeness of coverage of cases</li>
+    <li class="slide" id="additional-tools-mutation-3">Modifies a program's source code or byte code in small ways</li>
+    <li class="slide" id="additional-tools-mutation-4">Each mutated version is called a mutant</li>
+    <li class="slide" id="additional-tools-mutation-5">If test suit fails - the mutant killed</li>
+    <li class="slide" id="additional-tools-mutation-6">May require a significant increase of number of test cases</li>
+  </ul>
+</section>
+
+<section class="slide" id="additional-tools-mutation-examples">
+  <h2>What is mutated</h2>
+  <p>Here are some examples of mutation operators for imperative languages:</p>
+  <ul>
+    <li class="slide" id="additional-tools-mutation-examples-1">Statement deletion</li>
+    <li class="slide" id="additional-tools-mutation-examples-2">Statement duplication or insertion, e.g. goto fail</li>
+    <li class="slide" id="additional-tools-mutation-examples-3">Replacement of boolean subexpressions with true and false</li>
+    <li class="slide" id="additional-tools-mutation-examples-4">Replacement of some arithmetic operations with others, e.g. + with *, - with /</li>
+    <li class="slide" id="additional-tools-mutation-examples-5">Replacement of some boolean relations with others, e.g. &lt; with &lt;=, == and &gt;=</li>
+    <li class="slide" id="additional-tools-mutation-examples-6">Replacement of variables with others from the same scope (variable types must be compatible)</li>
+  </ul>
+</section>
+
+<section class="slide" id="additional-tools-other">
+  <h2>There are a lot more things...</h2>
+  <ul>
+    <li class="slide" id="additional-tools-other-1">
+      <h3>Load testing</h3>
+      <p>Is the process of putting demand on a system or device and measuring its response.</p>
+    </li>
+    <li class="slide" id="additional-tools-other-2">
+      <h3>Fuzz testing</h3>
+      <p>Involves providing invalid, unexpected, or random data to the inputs of a computer program.
+        The program is then monitored for exceptions such as crashes,
+        or failing built-in code assertions or for finding potential memory leaks.
+        Fuzzing is commonly used to test for security problems in software or computer systems.</p>
+    </li>
+    <li class="slide" id="additional-tools-other-3">
+      <h3>Test-driven infrastructure</h3>
+      <p>Approach for the developing of infrastructure, that involves testing of configurations and automated provisioning.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="additional-tools-chaos-monkey">
+  <h2>Chaos Monkey</h2>
+  <p>
+    Tool to test the resiliency and recoverability of Amazon Web Services. (<a href="http://cloud.dzone.com/articles/getting-know-chaos-monkey" target="">Read more</a>)
+  </p>
+  <img class="slide chaos-monkey" id="additional-tools-chaos-monkey-img" src="/public/testing/assets/chaos-monkey.jpg" alt="Chaos Monkey" />
+  <div class="chaos-monkey-list">
+    <ul>
+      <li class="slide" id="additional-tools-chaos-monkey-1">simulates failures of instances of services running within Auto Scaling Groups (ASG)</li>
+      <li class="slide" id="additional-tools-chaos-monkey-2">...by shutting down one or more of the virtual machines</li>
+      <li class="slide" id="additional-tools-chaos-monkey-3">Principle: the best way to avoid major failures is to fail constantly</li>
+      <li class="slide" id="additional-tools-chaos-monkey-4">Developed by Netflix engineers</li>
+    </ul>
+  </div>
+</section>
+
+<section id="ci" class="slide">
+  <div class="vcenter">
+    <h1>Continuous Integration</h1>
+  </div>
+</section>
+
+<section class="slide" id="ci-what-is-it">
+  <h2>Continuous Integration</h2>
+  <p>The practice of merging all developer working copies with a shared mainline several times a day.</p>
+  <ul>
+    <li class="slide" id="ci-what-is-it-1">The main aim of CI is to prevent integration problems</li>
+    <li class="slide" id="ci-what-is-it-2">It was adopted as part of extreme programming (XP)</li>
+    <li class="slide" id="ci-what-is-it-3">Intended to be used in combination with:
+      <ul>
+        <li class="slide" id="ci-what-is-it-4">automated unit tests</li>
+        <li class="slide" id="ci-what-is-it-5">... written through the test-driven development</li>
+      </ul>
+    </li>
+    <li class="slide" id="ci-what-is-it-6">Build servers automatically run the unit tests after every push to repository and report the results to the developers.</li>
+  </ul>
+</section>
+
+<section class="slide" id="ci-best-parctices">
+  <h2>CI Best parctices</h2>
+  <ul>
+    <li class="slide" id="ci-best-parctices-1">Maintain a code repository</li>
+    <li class="slide" id="ci-best-parctices-2">Automate the build</li>
+    <li class="slide" id="ci-best-parctices-3">Make the build self-testing</li>
+    <li class="slide" id="ci-best-parctices-4">Keep the build fast</li>
+    <li class="slide" id="ci-best-parctices-5">Test in a clone of the production environment</li>
+    <li class="slide" id="ci-best-parctices-6">Make it easy to get the latest deliverables</li>
+    <li class="slide" id="ci-best-parctices-7">Everyone can see the results of the latest build</li>
+    <li class="slide" id="ci-best-parctices-8">Automate deployment</li>
+  </ul>
+</section>
+
+<section class="slide" id="ci-tools">
+  <h2>CI Tools</h2>
+  <ul>
+    <li class="slide" id="ci-tools-1">
+      <strong>Bamboo</strong> is a continuous integration server from Atlassian, the makers of JIRA, Confluence and Crowd
+    </li>
+    <li class="slide" id="ci-tools-2">
+      <strong>TeamCity</strong> is a Java-based build management and continuous integration server from JetBrains
+    </li>
+    <li class="slide" id="ci-tools-3">
+      <strong>Team Foundation Server</strong> is a Microsoft product which provides ... swiss knife functionality ..., automated builds, lab management, testing and release management capabilities.
+    </li>
+    <li class="slide" id="ci-tools-4">
+      <strong>Travis CI</strong> is a hosted, distributed continuous integration service used to build and test projects hosted at GitHub.
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="ci-tools">
+  <h2>CI Tools</h2>
+  <ul>
+    <li class="slide" id="ci-tools-5">
+      <strong>Semaphore</strong> is a hosted continuous integration and delivery solution for open source and private projects.
+    </li>
+    <li class="slide" id="ci-tools-6">
+      <strong>CircleCI</strong> gives web developers powerful Continuous Integration and Deployment with easy setup and maintenance.
+    </li>
+    <li class="slide" id="ci-tools-7">
+      <strong>Jenkins</strong> an open source continuous integration tool written in Java. The project was forked from Hudson after a dispute with Oracle.
+    </li>
+    <li class="slide" id="ci-tools-8">
+      <strong>CruiseControl</strong> is a Java-based framework for a continuous build process. ... It allows one to perform a continuous integration of any software development process.
+    </li>
+  </ul>
+</section>
+
+<section class="slide" id="ci-tools-how-it-works">
+  <h2>How CI tools built</h2>
+  <ul>
+    <li class="slide" id="ci-tools-how-it-works-1">Separation of environments</li>
+    <li class="slide" id="ci-tools-how-it-works-2">Always start from a clean environment</li>
+    <li class="slide" id="ci-tools-how-it-works-3">Use VMs or other means of virtualization</li>
+  </ul>
+</section>
+<section id="no-testing" class="slide">
+  <div class="vcenter">
+    <h1>When no need to write tests</h1>
+  </div>
+</section>
+
+<section id="no-testing-when" class="slide">
+  <h2>When no need to write tests</h2>
+  <p>In some occasions, it might save time. But do it reasonably.</p>
+  <ul>
+    <li id="no-testing-when-1" class="slide">Simple script (5-50 lines)</li>
+    <li id="no-testing-when-2" class="slide">A prototype (don't let it get even to staging)</li>
+    <li id="no-testing-when-3" class="slide">No way of automatic testing... or some parts can't be tested</li>
+  </ul>
+</section>
+
+<section id="no-testing-rare-cases" class="slide">
+  <h2>But there are some cases, when tests were helping...</h2>
+  <ul>
+    <li id="no-testing-rare-cases-1" class="slide">Data migration scripts</li>
+    <li id="no-testing-rare-cases-2" class="slide">Backup class</li>
+    <li id="no-testing-rare-cases-3" class="slide">A CLI utility for HTTP monitoring</li>
+  </ul>
+</section>
+<section id="ruby-tools" class="slide">
+  <div class="vcenter">
+    <h1>Ruby Tools</h1>
+  </div>
+</section>
+
+<section id="ruby-tools-list" class="slide">
+  <h2>Ruby tools for testing</h2>
+  <p>The framework-agnostic or just helpful gems. Testing frameworks and everything, we will see in next slides.</p>
+
+  <ul>
+    <li id="ruby-tools-list-1" class="slide"><a href="https://github.com/thoughtbot/factory_girl"><strong>FactoryGirl</strong></a> is a fixtures replacement with a straightforward definition syntax, support for multiple build strategies (saved instances, unsaved instances, attribute hashes, and stubbed objects), and support for multiple factories for the same class (user, admin_user, and so on), including factory inheritance.</li>
+    <li id="ruby-tools-list-2" class="slide"><a href="http://www.fabricationgem.org/"><strong>Fabricaton</strong></a> is an object generation framework for Ruby.</li>
+    <li id="ruby-tools-list-3" class="slide"><a href="https://github.com/EmmanuelOga/ffaker"><strong>FFaker</strong></a> is a rewrite of Faker, a port of Data::Faker from Perl, is used to easily generate fake data: names, addresses, phone numbers, etc.</li>
+  </ul>
+</section>
+
+<section id="ruby-tools-list-p2" class="slide">
+  <h2>Ruby tools for testing</h2>
+  <ul>
+    <li id="ruby-tools-list-4" class="slide"><a href="https://github.com/DatabaseCleaner/database_cleaner"><strong>Database Cleaner</strong></a> is a set of strategies for cleaning your database in Ruby. The original use case was to ensure a clean state during tests. ActiveRecord, DataMapper, Sequel, MongoMapper, Mongoid, CouchPotato, Ohm and Redis are supported.</li>
+
+    <li id="ruby-tools-list-5" class="slide"><a href="https://github.com/bblimke/webmock"><strong>WebMock</strong></a> is a library for stubbing and setting expectations on HTTP requests in Ruby.</li>
+    <li id="ruby-tools-list-6" class="slide"><a href="https://github.com/vcr/vcr"><strong>VCR</strong></a> records test suite's HTTP interactions and replay them during future test runs for fast, deterministic, accurate tests.</li>
+  </ul>
+</section>
+
+<section id="ruby-tools-list-p3" class="slide">
+  <h2>Ruby tools for testing</h2>
+  <ul>
+    <li id="ruby-tools-list-7" class="slide"><a href="https://github.com/jnicklas/capybara"><strong>Capybara</strong></a> helps you test web applications by simulating how a real user would interact with your app. It is agnostic about the driver running your tests and comes with Rack::Test and Selenium support built in. WebKit is supported through an external gem.</li>
+    <li id="ruby-tools-list-8" class="slide"><a href="https://github.com/playup/diff_matcher"><strong>DiffMatcher</strong></a> matches input data (eg. from a JSON API) against values, ranges, classes, regexes, procs, custom matchers and/or easily composed, nested combinations thereof to produce an easy to read diff string.</li>
+    <li id="ruby-tools-list-9" class="slide"><a href="https://github.com/thoughtbot/shoulda-matchers"><strong>Shoulda Matchers</strong></a> provides Test::Unit- and RSpec-compatible one-liners that test common Rails functionality. These tests would otherwise be much longer, more complex, and error-prone.</li>
+  </ul>
+</section>
+
+<section id="ruby-tools-list-p4" class="slide">
+  <h2>Ruby tools for testing</h2>
+  <ul>
+    <li id="ruby-tools-list-10" class="slide"><a href="https://github.com/rspec/rspec"><strong>RSpec</strong></a> Behaviour Driven Development for Ruby</li>
+    <li id="ruby-tools-list-11" class="slide"><a href="https://github.com/cucumber/cucumber"><strong>Cucumber</strong></a> is a tool for running automated tests written in plain language. Because they're written in plain language, they can be read by anyone on your team.</li>
+  </ul>
+</section>
+
+<section id="ruby-tools-list-p5" class="slide">
+  <h2>Ruby tools for testing</h2>
+  <ul>
+    <li id="ruby-tools-list-12" class="slide"><a href="https://github.com/zipmark/rspec_api_documentation"><strong>RspecApiDocumentation</strong></a> generates pretty API docs for your Rails APIs.</li>
+    <li id="ruby-tools-list-13" class="slide"><a href="https://github.com/tim-vandecasteele/grape-swagger"><strong>The grape-swagger gem</strong></a> provides an autogenerated documentation for your Grape API. The generated documentation is Swagger-compliant, meaning it can easily be discovered in Swagger UI.</li>
+
+    <li id="ruby-tools-list-14" class="slide"><a href="https://github.com/nixme/jazz_hands"><strong>jazz_hands</strong></a> is an opinionated set of console-related gems and a bit of glue...</li>
+  </ul>
+</section>
+<!-- End slides. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">←</a>
+<a href="#" class="deck-next-link" title="Next">→</a>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+  <span class="deck-status-current"></span>
+  /
+  <span class="deck-status-total"></span>
+</p>
+
+</body>
+</html>
